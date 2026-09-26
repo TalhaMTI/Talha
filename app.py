@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+import json
 import os
 import streamlit as st
 import streamlit.components.v1 as components
@@ -7,6 +8,69 @@ import streamlit.components.v1 as components
 st.set_page_config(
     page_title="Sadece İkimize Özel...", page_icon="❤️", layout="centered"
 )
+
+# --- VERİTABANI (JSON) YÖNETİMİ ---
+VERITABANI_DOSYASI = "veritabani.json"
+
+
+def verileri_yukle():
+    if os.path.exists(VERITABANI_DOSYASI):
+        try:
+            with open(VERITABANI_DOSYASI, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            pass
+    return {
+        "bucket_list": {},
+        "notlar": [
+            "Bugün yine iyi ki varsın sevgilim. ❤️",
+            "Gözlerin aklımdan çıkmıyor...",
+        ],
+        "sarki_listesi": [
+            (
+                "Kıraç - Endamın Yeter",
+                "Ruhumuza kazınan o eşsiz parça 🎸",
+                "spotify:search:Kıraç%20Endamın%20Yeter",
+            ),
+            (
+                "Duman - Senden Daha Güzel",
+                "Senden daha güzel kim var ki... ✨",
+                "spotify:search:Duman%20Senden%20Daha%20Güzel",
+            ),
+            (
+                "Yalın - Ki Sen",
+                "Kalbe dokunan en tatlı his 💞",
+                "spotify:search:Yalın%20Ki%20Sen",
+            ),
+        ],
+    ]
+
+
+def verileri_kaydet():
+    veri = {
+        "bucket_list": st.session_state.bucket_list_state,
+        "notlar": st.session_state.notlar,
+        "sarki_listesi": st.session_state.sarki_listesi,
+    }
+    with open(VERITABANI_DOSYASI, "w", encoding="utf-8") as f:
+        json.dump(veri, f, ensure_ascii=False, indent=4)
+
+
+# Kayıtlı verileri session_state'e yükle
+kayitli_veri = verileri_yukle()
+
+if "giris_yapildi" not in st.session_state:
+    st.session_state.giris_yapildi = False
+
+if "notlar" not in st.session_state:
+    st.session_state.notlar = kayitli_veri["notlar"]
+
+if "bucket_list_state" not in st.session_state:
+    st.session_state.bucket_list_state = kayitli_veri["bucket_list"]
+
+if "sarki_listesi" not in st.session_state:
+    st.session_state.sarki_listesi = kayitli_veri["sarki_listesi"]
+
 
 # Alanya Gün Batımı ve Gece Mavisi Temalı Ultra Şık CSS
 st.markdown(
@@ -158,38 +222,6 @@ st.markdown(
 # Şifren
 DOGRU_SIFRE = "19/09/2026"
 
-if "giris_yapildi" not in st.session_state:
-    st.session_state.giris_yapildi = False
-
-if "notlar" not in st.session_state:
-    st.session_state.notlar = [
-        "Bugün yine iyi ki varsın sevgilim. ❤️",
-        "Gözlerin aklımdan çıkmıyor...",
-    ]
-
-if "bucket_list_state" not in st.session_state:
-    st.session_state.bucket_list_state = {}
-
-if "sarki_listesi" not in st.session_state:
-    st.session_state.sarki_listesi = [
-        (
-            "Kıraç - Endamın Yeter",
-            "Ruhumuza kazınan o eşsiz parça 🎸",
-            "spotify:search:Kıraç%20Endamın%20Yeter",
-        ),
-        (
-            "Duman - Senden Daha Güzel",
-            "Senden daha güzel kim var ki... ✨",
-            "spotify:search:Duman%20Senden%20Daha%20Güzel",
-        ),
-        (
-            "Yalın - Ki Sen",
-            "Kalbe dokunan en tatlı his 💞",
-            "spotify:search:Yalın%20Ki%20Sen",
-        ),
-    ]
-
-# Giriş Ekranı
 if not st.session_state.giris_yapildi:
     st.markdown(
         """
@@ -374,7 +406,7 @@ if st.session_state.giris_yapildi:
         else:
             st.info("📷 Klasöre 'fotograf2.jpg' ekle")
 
-    # --- 5. BÖLÜM: ORTAK YAPILACAKLAR LİSTESİ (Kalıcı Hale Getirildi) ---
+    # --- 5. BÖLÜM: ORTAK YAPILACAKLAR LİSTESİ (Kalıcı ve Veritabanı Destekli) ---
     st.markdown("---")
     st.header("🎯 Birlikte Yapacaklarımız")
     st.write(
@@ -403,10 +435,16 @@ if st.session_state.giris_yapildi:
         ("Doğanın kalbinde baş başa huzurlu vakit geçirmek 🌿"),
     ]
 
+    degisiklik_oldu = False
     for i, item in enumerate(bucket_list):
-        mevcut_durum = st.session_state.bucket_list_state.get(i, False)
+        mevcut_durum = st.session_state.bucket_list_state.get(str(i), False)
         yeni_durum = st.checkbox(item, value=mevcut_durum, key=f"bucket_{i}")
-        st.session_state.bucket_list_state[i] = yeni_durum
+        if mevcut_durum != yeni_durum:
+            st.session_state.bucket_list_state[str(i)] = yeni_durum
+            degisiklik_oldu = True
+
+    if degisiklik_oldu:
+        verileri_kaydet()
 
     # --- MİNİ AŞK TESTİ ---
     st.markdown("---")
@@ -446,8 +484,8 @@ if st.session_state.giris_yapildi:
     st.markdown("---")
     st.subheader("✨ Listeye Yeni Bir Şarkı Ekle")
 
-    yeni_sarki = st.text_input("Şarkı Adı ve Sanatçı", placeholder="")
-    yeni_not = st.text_input("Şarkıyla İlgili Küçük Bir Not", placeholder="")
+    yeni_sarki = st.text_input("Şarkı Adı ve Sanatçı", placeholder="", key="y_sarki")
+    yeni_not = st.text_input("Şarkıyla İlgili Küçük Bir Not", placeholder="", key="y_not")
 
     if st.button("Şarkıyı Listeye Ekle ve Spotify'da Aç 🎶"):
         if yeni_sarki:
@@ -459,6 +497,7 @@ if st.session_state.giris_yapildi:
                     s_url,
                 )
             )
+            verileri_kaydet()
             st.success(
                 f"Harika! '{yeni_sarki}' başarıyla listemize eklendi ve"
                 " Spotify'da açılıyor! 🎉"
@@ -497,13 +536,16 @@ if st.session_state.giris_yapildi:
     yeni_not_metin = st.text_area(
         "Bana buraya küçük bir not bırakmak ister misin sevgilim?",
         placeholder="Aklından geçenleri yaz...",
+        key="anlik_not_input"
     )
     if st.button("Notu Kaydet 📌"):
         if yeni_not_metin:
             st.session_state.notlar.append(yeni_not_metin)
+            verileri_kaydet()
             st.success(
                 "Notun kalbime ve bu siteye kaydedildi sevgilim! İyi ki varsın. ❤️"
             )
+            st.rerun()
 
     if st.session_state.notlar:
         st.markdown(
