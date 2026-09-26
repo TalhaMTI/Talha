@@ -1,32 +1,53 @@
-def verileri_yukle():
-    if os.path.exists(VERITABANI_DOSYASI):
-        try:
-            with open(VERITABANI_DOSYASI, "r", encoding="utf-8") as f:
-                return json.load(f)
-        except Exception:
-            pass
-    return {
-        "bucket_list": {},
-        "notlar": [
-            "Bugün yine iyi ki varsın sevgilim. ❤️",
-            "Gözlerin aklımdan çıkmıyor...",
-        ],
-        "sarki_listesi": [
+"Gözlerin aklımdan çıkmıyor...",
+],
+"sarki_listesi": [
+            (
             [
-                "Kıraç - Endamın Yeter",
-                "Ruhumuza kazınan o eşsiz parça 🎸",
-                "https://open.spotify.com/search/Kıraç%20Endamın%20Yeter",
+"Kıraç - Endamın Yeter",
+"Ruhumuza kazınan o eşsiz parça 🎸",
+"spotify:search:Kıraç%20Endamın%20Yeter",
+            ),
+            (
             ],
             [
-                "Duman - Senden Daha Güzel",
-                "Senden daha güzel kim var ki... ✨",
-                "https://open.spotify.com/search/Duman%20Senden%20Daha%20Güzel",
+"Duman - Senden Daha Güzel",
+"Senden daha güzel kim var ki... ✨",
+"spotify:search:Duman%20Senden%20Daha%20Güzel",
+            ),
+            (
             ],
             [
-                "Yalın - Ki Sen",
-                "Kalbe dokunan en tatlı his 💞",
-                "https://open.spotify.com/search/Yalın%20Ki%20Sen",
+"Yalın - Ki Sen",
+"Kalbe dokunan en tatlı his 💞",
+"spotify:search:Yalın%20Ki%20Sen",
+            ),
             ],
-        ],
-        "ask_testi_secim": "Seçiniz...",  # Yeni eklenen kalıcı alan
+],
+    ]
     }
+
+
+def verileri_kaydet():
+@@ -406,7 +406,7 @@ def verileri_kaydet():
+else:
+st.info("📷 Klasöre 'fotograf2.jpg' ekle")
+
+    # --- 5. BÖLÜM: ORTAK YAPILACAKLAR LİSTESİ (Kalıcı ve Veritabanı Destekli) ---
+    # --- 5. BÖLÜM: ORTAK YAPILACAKLAR LİSTESİ ---
+st.markdown("---")
+st.header("🎯 Birlikte Yapacaklarımız")
+st.write(
+@@ -491,11 +491,11 @@ def verileri_kaydet():
+if yeni_sarki:
+s_url = f"spotify:search:{yeni_sarki.replace(' ', '%20')}"
+st.session_state.sarki_listesi.append(
+                (
+                [
+yeni_sarki,
+yeni_not if yeni_not else "Bizim Şarkımız",
+s_url,
+                )
+                ]
+)
+verileri_kaydet()
+st.success(
