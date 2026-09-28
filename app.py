@@ -1,3 +1,74 @@
+import streamlit as st
+
+st.set_page_config(page_title="Bakım Arası...", page_icon="💔", layout="centered")
+
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background: linear-gradient(135deg, #090d16 0%, #161f37 40%, #2a1b3d 100%);
+        color: #f8fafc;
+        font-family: 'Helvetica Neue', sans-serif;
+    }
+    .bakim-container {
+        background: rgba(255, 255, 255, 0.04);
+        padding: 50px 35px;
+        border-radius: 28px;
+        border: 1px solid rgba(255, 110, 64, 0.4);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(15px);
+        text-align: center;
+        max-width: 500px;
+        margin: 80px auto;
+        animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .broken-heart {
+        font-size: 60px;
+        margin-bottom: 20px;
+        animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
+    h1 {
+        color: #ffb74d !important;
+        font-size: 26px !important;
+        margin-bottom: 15px !important;
+    }
+    p {
+        color: #cbd5e1 !important;
+        font-size: 16px !important;
+        line-height: 1.6 !important;
+        margin-bottom: 25px !important;
+    }
+    .highlight {
+        color: #ff6e40;
+        font-weight: bold;
+    }
+    </style>
+
+    <div class="bakim-container">
+        <div class="broken-heart">💔</div>
+        <h1>Geçici Süreliğine Kapalıyız...</h1>
+        <p>
+            Bu dijital evrenin ışıkları, <span class="highlight">sen gittiğin için</span> şimdilik söndü.<br><br>
+            Burası sadece ikimiz için, bizim anılarımız ve sevgimiz için vardı. Ne zaman ki o güzel adımlarınla geri döner, hataya bir son verip yeniden "biz" olursun; kapılar o zaman yeniden açılacak.<br><br>
+            Bekliyorum...
+        </p>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+st.stop()
+
+
 from datetime import datetime, timedelta
 import json
 import os
