@@ -1,65 +1,57 @@
 import streamlit as st
 
-st.set_page_config(page_title="Bakım Arası...", page_icon="💔", layout="centered")
+st.set_page_config(page_title="Sessizlik...", page_icon="💔", layout="centered")
 
 st.markdown(
     """
     <style>
     .stApp {
-        background: linear-gradient(135deg, #090d16 0%, #161f37 40%, #2a1b3d 100%);
-        color: #f8fafc;
+        background: linear-gradient(135deg, #070913 0%, #13192f 50%, #20132b 100%);
+        color: #f1f5f9;
         font-family: 'Helvetica Neue', sans-serif;
     }
-    .bakim-container {
-        background: rgba(255, 255, 255, 0.04);
+    .bekleme-container {
+        background: rgba(20, 20, 35, 0.75);
         padding: 50px 35px;
-        border-radius: 28px;
-        border: 1px solid rgba(255, 110, 64, 0.4);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
-        backdrop-filter: blur(15px);
+        border-radius: 24px;
+        border: 1px solid rgba(255, 152, 0, 0.25);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(12px);
         text-align: center;
-        max-width: 500px;
+        max-width: 520px;
         margin: 80px auto;
-        animation: fadeIn 1s ease-in-out;
     }
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    .broken-heart {
-        font-size: 60px;
+    .ikon {
+        font-size: 50px;
         margin-bottom: 20px;
-        animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.1); }
-        100% { transform: scale(1); }
     }
     h1 {
         color: #ffb74d !important;
-        font-size: 26px !important;
-        margin-bottom: 15px !important;
+        font-size: 22px !important;
+        letter-spacing: 0.5px;
+        margin-bottom: 20px !important;
     }
     p {
         color: #cbd5e1 !important;
-        font-size: 16px !important;
-        line-height: 1.6 !important;
-        margin-bottom: 25px !important;
+        font-size: 15px !important;
+        line-height: 1.7 !important;
+        margin-bottom: 15px !important;
     }
-    .highlight {
-        color: #ff6e40;
-        font-weight: bold;
+    .vurgu {
+        color: #ff8a65;
+        font-weight: 600;
     }
     </style>
 
-    <div class="bakim-container">
-        <div class="broken-heart">💔</div>
-        <h1>Geçici Süreliğine Kapalıyız...</h1>
+    <div class="bekleme-container">
+        <div class="ikon">💔</div>
+        <h1>BURASI ŞİMDİLİK SESSİZLİĞE BÜRÜNDÜ</h1>
         <p>
-            Bu dijital evrenin ışıkları, <span class="highlight">sen gittiğin için</span> şimdilik söndü.<br><br>
-            Burası sadece ikimiz için, bizim anılarımız ve sevgimiz için vardı. Ne zaman ki o güzel adımlarınla geri döner, hataya bir son verip yeniden "biz" olursun; kapılar o zaman yeniden açılacak.<br><br>
-            Bekliyorum...
+            Dün geceden beri gözümde yaşla, içimdeki o tarifsiz acıyla seni düşünürken; senin "ara verelim, hediyeleri saklarım" deyip bu masaldan vazgeçmen canımı çok yaktı.<br><br>
+            Seni bu kadar severken ve her şeyi sadece senin için kurmuşken, bu sessizliği hak etmedim.
+        </p>
+        <p>
+            <span class="vurgu">Bu kapı tamamen kapanmadı, çünkü seni hâlâ çok seviyorum ve bekliyorum. Ama bu belirsizliğin ve gidişinin acısını içimde taşıyorum; ne zaman gerçekten pişman olup hatanı anlar ve bana dönersen, burası o zaman yeniden seninle anlam bulacak.</span>
         </p>
     </div>
     """,
@@ -67,8 +59,6 @@ st.markdown(
 )
 
 st.stop()
-
-
 from datetime import datetime, timedelta
 import json
 import os
