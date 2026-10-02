@@ -27,17 +27,21 @@ if not st.session_state.giris_yapildi:
             color: #ffffff;
             font-family: 'Inter', sans-serif;
         }
+        
+        /* Streamlit varsayılan üst boşluğunu sıfırlıyoruz */
+        header {visibility: hidden;}
         .block-container {
-            padding-top: 2rem !important;
+            padding-top: 4rem !important;
             display: flex;
             align-items: center;
             justify-content: center;
         }
+        
         .login-box {
-            background: rgba(18, 18, 24, 0.85);
+            background: rgba(18, 18, 24, 0.9);
             backdrop-filter: blur(20px);
             border: 2px solid rgba(245, 158, 11, 0.5);
-            padding: 40px 35px;
+            padding: 45px 35px;
             border-radius: 24px;
             text-align: center;
             width: 100%;
@@ -50,7 +54,7 @@ if not st.session_state.giris_yapildi:
             0% { border-color: rgba(245, 158, 11, 0.3); box-shadow: 0 0 30px rgba(245, 158, 11, 0.15); }
             100% { border-color: rgba(245, 158, 11, 0.8); box-shadow: 0 0 60px rgba(245, 158, 11, 0.4); }
         }
-        /* MTI WEB TASARIM Rozeti */
+        
         .login-mti-badge {
             background: rgba(245, 158, 11, 0.12);
             border: 1px solid rgba(245, 158, 11, 0.5);
@@ -99,7 +103,7 @@ if not st.session_state.giris_yapildi:
         }
         .stButton button:hover {
             transform: scale(1.03);
-            box-shadow: 0 0 30px rgba(245, 158, 11, 0.8);
+            box-shadow: 0 0 35px rgba(245, 158, 11, 0.8);
         }
         </style>
         """,
@@ -153,6 +157,7 @@ st.markdown(
         color: #ffffff;
         font-family: 'Inter', sans-serif;
     }
+    header {visibility: hidden;}
     
     .hero-card {
         background: linear-gradient(135deg, rgba(18, 18, 24, 0.9) 0%, rgba(10, 10, 15, 0.95) 100%);
@@ -215,7 +220,6 @@ st.markdown(
         text-align: center;
         box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        position: relative;
     }
     .metric-card:hover {
         border-color: #f59e0b;
