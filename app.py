@@ -28,26 +28,28 @@ if not st.session_state.giris_yapildi:
             font-family: 'Inter', sans-serif;
         }
         
-        /* Streamlit varsayılan üst boşluğunu sıfırlıyoruz */
         header {visibility: hidden;}
-        .block-container {
-            padding-top: 4rem !important;
+        
+        /* Sayfayı tam ortalamak için esnek yapı */
+        .main .block-container {
             display: flex;
             align-items: center;
             justify-content: center;
+            min-height: 85vh;
+            padding-top: 0rem !important;
         }
         
         .login-box {
             background: rgba(18, 18, 24, 0.9);
             backdrop-filter: blur(20px);
             border: 2px solid rgba(245, 158, 11, 0.5);
-            padding: 45px 35px;
+            padding: 45px 40px;
             border-radius: 24px;
             text-align: center;
             width: 100%;
-            max-width: 440px;
+            max-width: 480px;
             box-shadow: 0 0 50px rgba(245, 158, 11, 0.25), inset 0 0 20px rgba(245, 158, 11, 0.1);
-            margin: 0 auto;
+            margin: auto;
             animation: pulse-border 3s infinite alternate;
         }
         @keyframes pulse-border {
