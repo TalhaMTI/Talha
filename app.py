@@ -28,16 +28,16 @@ if not st.session_state.giris_yapildi:
             font-family: 'Inter', sans-serif;
         }
         .block-container {
-            padding-top: 4rem !important;
+            padding-top: 2rem !important;
             display: flex;
             align-items: center;
             justify-content: center;
         }
         .login-box {
-            background: rgba(18, 18, 24, 0.75);
+            background: rgba(18, 18, 24, 0.85);
             backdrop-filter: blur(20px);
             border: 2px solid rgba(245, 158, 11, 0.5);
-            padding: 50px 40px;
+            padding: 40px 35px;
             border-radius: 24px;
             text-align: center;
             width: 100%;
@@ -50,18 +50,34 @@ if not st.session_state.giris_yapildi:
             0% { border-color: rgba(245, 158, 11, 0.3); box-shadow: 0 0 30px rgba(245, 158, 11, 0.15); }
             100% { border-color: rgba(245, 158, 11, 0.8); box-shadow: 0 0 60px rgba(245, 158, 11, 0.4); }
         }
-        .login-title {
+        /* MTI WEB TASARIM Rozeti */
+        .login-mti-badge {
+            background: rgba(245, 158, 11, 0.12);
+            border: 1px solid rgba(245, 158, 11, 0.5);
+            padding: 8px 16px;
+            border-radius: 12px;
             font-family: 'Orbitron', sans-serif;
             color: #f59e0b;
             font-weight: 900;
-            font-size: 26px;
+            font-size: 13px;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            display: inline-block;
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
+            text-shadow: 0 0 8px rgba(245, 158, 11, 0.6);
+        }
+        .login-title {
+            font-family: 'Orbitron', sans-serif;
+            color: #ffffff;
+            font-weight: 900;
+            font-size: 24px;
             letter-spacing: 2px;
-            text-shadow: 0 0 15px rgba(245, 158, 11, 0.6);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
             margin-bottom: 10px;
         }
         .login-box p {
             color: #e2e8f0 !important;
-            font-size: 14px !important;
+            font-size: 13px !important;
             font-weight: 600 !important;
         }
         .stTextInput input {
@@ -74,6 +90,7 @@ if not st.session_state.giris_yapildi:
         .stButton button {
             background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
             color: #030305 !important;
+            font-family: 'Orbitron', sans-serif !important;
             font-weight: 900 !important;
             border-radius: 12px !important;
             border: none !important;
@@ -91,11 +108,15 @@ if not st.session_state.giris_yapildi:
 
     st.markdown('<div class="login-box">', unsafe_allow_html=True)
     st.markdown(
+        '<div class="login-mti-badge">⚡ MTI WEB TASARIM ⚡</div>',
+        unsafe_allow_html=True,
+    )
+    st.markdown(
         '<div class="login-title">👑 ELITE COMMAND</div>',
         unsafe_allow_html=True,
     )
     st.markdown(
-        "<p style='margin-bottom: 25px;'>Bu sistem yalnızca Komutan Talha Işıkcı'ya aittir. Yetkisiz erişim yasaktır.</p>",
+        "<p style='margin-bottom: 20px;'>Bu sistem yalnızca Komutan Talha Işıkcı'ya aittir. Yetkisiz erişim yasaktır.</p>",
         unsafe_allow_html=True,
     )
 
@@ -104,7 +125,7 @@ if not st.session_state.giris_yapildi:
     )
     if not sifre_giris:
         st.markdown(
-            "<p style='font-size: 11px; color: #94a3b8; margin-top:-10px; margin-bottom:15px;'>Güvenlik Anahtarını Girin</p>",
+            "<p style='font-size: 11px; color: #94a3b8; margin-top:-5px; margin-bottom:15px;'>Güvenlik Anahtarını Girin</p>",
             unsafe_allow_html=True,
         )
 
@@ -133,7 +154,6 @@ st.markdown(
         font-family: 'Inter', sans-serif;
     }
     
-    /* Neon Hero Kartı */
     .hero-card {
         background: linear-gradient(135deg, rgba(18, 18, 24, 0.9) 0%, rgba(10, 10, 15, 0.95) 100%);
         border: 2px solid rgba(245, 158, 11, 0.4);
@@ -171,7 +191,6 @@ st.markdown(
         text-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
     }
 
-    /* MTI Web Tasarım Özel İmza Banner'ı */
     .mti-badge {
         background: rgba(245, 158, 11, 0.08);
         border: 1px solid rgba(245, 158, 11, 0.4);
@@ -188,7 +207,6 @@ st.markdown(
         text-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
     }
 
-    /* Holografik Kartlar */
     .metric-card {
         background: rgba(18, 18, 24, 0.8);
         border: 1px solid rgba(245, 158, 11, 0.25);
@@ -213,7 +231,6 @@ st.markdown(
         letter-spacing: 1px;
     }
 
-    /* Sekme Başlıkları ve Genel Metinler */
     h3 {
         font-family: 'Orbitron', sans-serif !important;
         color: #f59e0b !important;
@@ -226,7 +243,6 @@ st.markdown(
         font-size: 14px;
     }
     
-    /* Özel Buton Stili */
     .stButton button {
         background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%) !important;
         color: #030305 !important;
