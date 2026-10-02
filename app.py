@@ -24,11 +24,11 @@ if not st.session_state.giris_yapildi:
         .login-box {
             background: rgba(15, 23, 42, 0.9);
             border: 1px solid rgba(56, 189, 248, 0.2);
-            padding: 45px;
+            padding: 40px;
             border-radius: 24px;
             text-align: center;
             max-width: 420px;
-            margin: 100px auto;
+            margin: 20px auto;
             box-shadow: 0 25px 50px rgba(0,0,0,0.9);
             backdrop-filter: blur(10px);
         }
@@ -45,15 +45,11 @@ if not st.session_state.giris_yapildi:
             unsafe_allow_html=True,
         )
         st.markdown(
-            "<p style='color: #94a3b8; font-size: 13px; margin-bottom: 25px;'>Bu dijital alan yalnızca Talha Işıkcı'ya aittir.</p>",
+            "<p style='color: #94a3b8; font-size: 13px; margin-bottom: 20px;'>Bu dijital alan yalnızca Talha Işıkcı'ya aittir.</p>",
             unsafe_allow_html=True,
         )
 
-        sifre_giris = st.text_input(
-            "Güvenlik Anahtarı",
-            type="password",
-            placeholder="Doğum Tarihi (GG.AA.YYYY)",
-        )
+        sifre_giris = st.text_input("Güvenlik Anahtarı", type="password")
 
         if st.button(
             "Sisteme Bağlan", use_container_width=True, type="primary"
