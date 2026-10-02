@@ -1,716 +1,182 @@
+from datetime import datetime
 import streamlit as st
 
-# Sena'nın siteye erişimini tamamen kesen kilit mekanizması
-ERISIM_ACIK_MI = (
-    False  # False yaptığın sürece kimse içeri giremez, site kilitli kalır
+# Sayfa Yapılandırması
+st.set_page_config(
+    page_title="Talha Işıkcı | Kişisel Üs",
+    page_icon="👑",
+    layout="wide",
+    initial_sidebar_state="expanded",
 )
 
-if not ERISIM_ACIK_MI:
-    st.set_page_config(
-        page_title="Arşivde...", page_icon="🔒", layout="centered"
-    )
+# --- GİRİŞ / ŞİFRE KONTROLÜ ---
+# Doğum tarihin olan şifre: 20.02.2008
+if "giris_yapildi" not in st.session_state:
+    st.session_state.giris_yapildi = False
+
+if not st.session_state.giris_yapildi:
     st.markdown(
         """
         <style>
         .stApp {
-            background: #000000;
-            color: #94a3b8;
-            font-family: 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #09090b 0%, #18181b 100%);
+            color: #f4f4f5;
         }
-        .arsiv-container {
+        .login-box {
+            background: rgba(24, 24, 27, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
             text-align: center;
-            padding: 100px 20px;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        h1 {
-            color: #e2e8f0 !important;
-            font-size: 20px !important;
-            letter-spacing: 2px;
-            margin-bottom: 15px !important;
-        }
-        p {
-            font-size: 14px;
-            color: #64748b;
+            max-width: 400px;
+            margin: 100px auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
         }
         </style>
-        <div class="arsiv-container">
-            <h1>BU SAYFA ARŞİVLENMİŞTİR</h1>
-            <p>Bu dijital alan süresiz olarak askıya alınmıştır ve erişime kapalıdır.</p>
-        </div>
         """,
         unsafe_allow_html=True,
     )
+
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        st.markdown(
+            '<div class="login-box">', unsafe_allow_html=True
+        )
+        st.markdown("### 🔒 Yetkili Girişi")
+        st.markdown(
+            "<p style='color: #a1a1aa; font-size: 13px;'>Bu alan sadece Talha Işıkcı'ya özeldir.</p>",
+            unsafe_allow_html=True,
+        )
+
+        sifre_giris = st.text_input(
+            "Güvenlik Anahtarı", type="password", placeholder="GG.AA.YYYY"
+        )
+
+        if st.button(
+            "Sisteme Giriş Yap", use_container_width=True, type="primary"
+        ):
+            if sifre_giris == "20.02.2008":
+                st.session_state.giris_yapildi = True
+                st.rerun()
+            else:
+                st.error("Geçersiz Anahtar!")
+        st.markdown("</div>", unsafe_allow_html=True)
     st.stop()
 
-# --- Normal sitenin geri kalan kodları buranın altında kalır, dokunulmaz ---
 
-
-
-
-
-
-import streamlit as st
-
-st.set_page_config(page_title="Sessizlik...", page_icon="💔", layout="centered")
-
+# --- ANA PANEL (GİRİŞ BAŞARILI) ---
 st.markdown(
     """
     <style>
     .stApp {
-        background: linear-gradient(135deg, #070913 0%, #13192f 50%, #20132b 100%);
-        color: #f1f5f9;
+        background: #09090b;
+        color: #f4f4f5;
         font-family: 'Helvetica Neue', sans-serif;
     }
-    .bekleme-container {
-        background: rgba(20, 20, 35, 0.75);
-        padding: 50px 35px;
-        border-radius: 24px;
-        border: 1px solid rgba(255, 152, 0, 0.25);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
-        backdrop-filter: blur(12px);
-        text-align: center;
-        max-width: 520px;
-        margin: 80px auto;
-    }
-    .ikon {
-        font-size: 50px;
-        margin-bottom: 20px;
-    }
-    h1 {
-        color: #ffb74d !important;
-        font-size: 22px !important;
-        letter-spacing: 0.5px;
-        margin-bottom: 20px !important;
-    }
-    p {
-        color: #cbd5e1 !important;
-        font-size: 15px !important;
-        line-height: 1.7 !important;
-        margin-bottom: 15px !important;
-    }
-    .vurgu {
-        color: #ff8a65;
-        font-weight: 600;
-    }
-    </style>
-
-    <div class="bekleme-container">
-        <div class="ikon">💔</div>
-        <h1>BURASI ŞİMDİLİK SESSİZLİĞE BÜRÜNDÜ</h1>
-        <p>
-            Dün geceden beri gözümde yaşla, içimdeki o tarifsiz acıyla seni düşünürken; senin "ara verelim, hediyeleri saklarım" deyip bu masaldan vazgeçmen canımı çok yaktı.<br><br>
-            Seni bu kadar severken ve her şeyi sadece senin için kurmuşken, bu sessizliği hak etmedim.
-        </p>
-        <p>
-            <span class="vurgu">Bu kapı tamamen kapanmadı, çünkü seni hâlâ çok seviyorum ve bekliyorum. Ama bu belirsizliğin ve gidişinin acısını içimde taşıyorum; ne zaman gerçekten pişman olup hatanı anlar ve bana dönersen, burası o zaman yeniden seninle anlam bulacak.</span>
-        </p>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-
-st.stop()
-from datetime import datetime, timedelta
-import json
-import os
-import streamlit as st
-import streamlit.components.v1 as components
-
-# Sayfa Ayarları
-st.set_page_config(
-    page_title="Sadece İkimize Özel...", page_icon="❤️", layout="centered"
-)
-
-# --- VERİTABANI (JSON) YÖNETİMİ ---
-VERITABANI_DOSYASI = "veritabani.json"
-
-
-def verileri_yukle():
-    if os.path.exists(VERITABANI_DOSYASI):
-        try:
-            with open(VERITABANI_DOSYASI, "r", encoding="utf-8") as f:
-                return json.load(f)
-        except Exception:
-            pass
-    return {
-        "bucket_list": {},
-        "notlar": [
-            "Bugün yine iyi ki varsın sevgilim. ❤️",
-            "Gözlerin aklımdan çıkmıyor...",
-        ],
-        "sarki_listesi": [
-            [
-                "Kıraç - Endamın Yeter",
-                "Ruhumuza kazınan o eşsiz parça 🎸",
-                "spotify:search:Kıraç%20Endamın%20Yeter",
-            ],
-            [
-                "Duman - Senden Daha Güzel",
-                "Senden daha güzel kim var ki... ✨",
-                "spotify:search:Duman%20Senden%20Daha%20Güzel",
-            ],
-            [
-                "Yalın - Ki Sen",
-                "Kalbe dokunan en tatlı his 💞",
-                "spotify:search:Yalın%20Ki%20Sen",
-            ],
-        ],
-    }
-
-
-def verileri_kaydet():
-    veri = {
-        "bucket_list": st.session_state.bucket_list_state,
-        "notlar": st.session_state.notlar,
-        "sarki_listesi": st.session_state.sarki_listesi,
-    }
-    with open(VERITABANI_DOSYASI, "w", encoding="utf-8") as f:
-        json.dump(veri, f, ensure_ascii=False, indent=4)
-
-
-# Kayıtlı verileri session_state'e yükle
-kayitli_veri = verileri_yukle()
-
-if "giris_yapildi" not in st.session_state:
-    st.session_state.giris_yapildi = False
-
-if "notlar" not in st.session_state:
-    st.session_state.notlar = kayitli_veri["notlar"]
-
-if "bucket_list_state" not in st.session_state:
-    st.session_state.bucket_list_state = kayitli_veri["bucket_list"]
-
-if "sarki_listesi" not in st.session_state:
-    st.session_state.sarki_listesi = kayitli_veri["sarki_listesi"]
-
-
-# Alanya Gün Batımı ve Gece Mavisi Temalı Ultra Şık CSS
-st.markdown(
-    """
-    <style>
-    .stApp {
-        background: linear-gradient(135deg, #090d16 0%, #161f37 40%, #2a1b3d 100%);
-        color: #f8fafc;
-    }
-    .welcome-container {
-        background: rgba(255, 255, 255, 0.04);
-        padding: 45px 30px;
-        border-radius: 28px;
-        border: 1px solid rgba(255, 110, 64, 0.4);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-        backdrop-filter: blur(15px);
-        text-align: center;
-        max-width: 450px;
-        margin: 40px auto;
-        animation: fadeIn 0.8s ease-in-out;
-    }
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-15px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    .heart-icon {
-        font-size: 55px;
-        color: #ff6e40;
-        margin-bottom: 12px;
-        animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-        0% { transform: scale(1); text-shadow: 0 0 10px rgba(255,110,64,0.4); }
-        50% { transform: scale(1.12); text-shadow: 0 0 25px rgba(255,110,64,0.8); }
-        100% { transform: scale(1); text-shadow: 0 0 10px rgba(255,110,64,0.4); }
-    }
-    .stTextInput > div > div > input, .stTextArea textarea {
-        background-color: rgba(15, 23, 42, 0.95) !important;
-        color: #ffffff !important;
-        border-radius: 14px !important;
-        border: 2px solid #ff6e40 !important;
-        font-size: 16px;
-        padding: 12px;
-    }
-    .stTextArea textarea::placeholder {
-        color: #ffcc80 !important;
-        opacity: 0.8 !important;
-    }
-    .stTextInput label, .stSelectbox label, .stRadio label, .stTextArea label {
-        color: #ffb74d !important;
-        font-weight: 600 !important;
-        font-size: 16px !important;
-    }
-    .stButton>button {
-        background: linear-gradient(45deg, #ff6e40, #ff9f43);
-        color: white;
-        border: none;
-        border-radius: 14px;
-        padding: 12px 24px;
-        font-weight: bold;
-        font-size: 16px;
-        width: 100%;
-        box-shadow: 0 4px 15px rgba(255, 110, 64, 0.4);
-        transition: 0.3s;
-        margin-top: 12px;
-    }
-    .stButton>button:hover {
-        background: linear-gradient(45deg, #ff5722, #ff8f00);
-        box-shadow: 0 6px 20px rgba(255, 110, 64, 0.7);
-    }
-    h1, h2, h3 {
-        color: #ffb74d !important;
-        font-family: 'Helvetica Neue', sans-serif;
-        letter-spacing: 0.5px;
-    }
-    .content-container {
-        animation: smoothOpen 1s ease-in-out;
-    }
-    @keyframes smoothOpen {
-        from { opacity: 0; transform: scale(0.98); }
-        to { opacity: 1; transform: scale(1); }
-    }
-    .universe-card {
-        background: rgba(255, 255, 255, 0.03);
-        padding: 25px;
-        border-radius: 20px;
-        border-left: 6px solid #ff6e40;
-        border-right: 1px solid rgba(255, 255, 255, 0.05);
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        margin-bottom: 25px;
-        font-size: 16px;
-        line-height: 1.7;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-    }
-    .quote-box {
-        background: linear-gradient(135deg, rgba(255, 183, 77, 0.1), rgba(255, 110, 64, 0.05));
-        border: 1px dashed rgba(255, 183, 77, 0.4);
-        padding: 20px;
+    .hero-card {
+        background: linear-gradient(135deg, #18181b 0%, #27272a 100%);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 30px;
         border-radius: 16px;
-        text-align: center;
-        font-style: italic;
-        color: #ffe0b2;
         margin-bottom: 25px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
-    .counter-box, .birthday-box-sena, .birthday-box-talha {
+    .stat-card {
+        background: #18181b;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 20px;
+        border-radius: 12px;
         text-align: center;
-        padding: 25px;
-        border-radius: 22px;
-        margin-bottom: 25px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
-    .counter-box {
-        background: linear-gradient(135deg, rgba(255, 110, 64, 0.12), rgba(255, 75, 43, 0.05));
-        border: 2px solid rgba(255, 110, 64, 0.4);
-    }
-    .birthday-box-sena {
-        background: linear-gradient(135deg, rgba(233, 30, 99, 0.12), rgba(156, 39, 176, 0.05));
-        border: 2px solid rgba(233, 30, 99, 0.4);
-    }
-    .birthday-box-talha {
-        background: linear-gradient(135deg, rgba(33, 150, 243, 0.12), rgba(0, 188, 212, 0.05));
-        border: 2px solid rgba(33, 150, 243, 0.4);
-    }
-    .welcome-banner {
-        background: linear-gradient(90deg, rgba(255,110,64,0.15), rgba(255,183,77,0.15));
-        padding: 15px;
-        border-radius: 15px;
-        border: 1px solid rgba(255,183,77,0.3);
-        text-align: center;
-        font-size: 20px;
-        font-weight: bold;
-        color: #ffb74d;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    }
-    .timeline-item {
-        padding: 15px 20px;
-        border-left: 3px solid #ff6e40;
-        margin-bottom: 15px;
-        background: rgba(255,255,255,0.02);
-        border-radius: 0 12px 12px 0;
     }
     </style>
 """,
     unsafe_allow_html=True,
 )
 
-# Şifren
-DOGRU_SIFRE = "19/09/2026"
-
-if not st.session_state.giris_yapildi:
-    st.markdown(
-        """
-        <div class="welcome-container">
-            <div class="heart-icon">❤️</div>
-            <h2 style="margin-bottom: 5px;">Sonsuzluğun Başlangıcı</h2>
-            <p style="color: #94a3b8; font-size: 14px; margin-bottom: 20px;">Bu dijital evren sadece ikimiz için kuruldu.</p>
-    """,
-        unsafe_allow_html=True,
-    )
-
-    st.markdown(
-        '<p style="color: #ffb74d; font-size: 13px; font-weight: 500;'
-        ' margin-bottom: 5px; text-align: center;">🔒 İkimiz için de en özel'
-        " gün...</p>",
-        unsafe_allow_html=True,
-    )
-
-    sifre = st.text_input(
-        "", type="password", placeholder="", label_visibility="collapsed"
-    )
-
-    st.markdown("</div>", unsafe_allow_html=True)
-
-    if sifre:
-        if sifre == DOGRU_SIFRE:
-            st.session_state.giris_yapildi = True
-            st.rerun()
-        else:
-            st.error("Şifre yanlış sevgilim, ikimiz için özel olan o tarihi dene :)")
-
-# İçerik Ekranı
-if st.session_state.giris_yapildi:
-    st.markdown('<div class="content-container">', unsafe_allow_html=True)
-
-    st.markdown(
-        """
-        <div class="welcome-banner">
-            ✨ Sonsuzluk kapısı aralandı... Hoş geldin sevgilim! 💞
-        </div>
-    """,
-        unsafe_allow_html=True,
-    )
-    st.balloons()
-
-    simdi = datetime.utcnow() + timedelta(hours=3)
-
-    # --- 0. GÜNÜN AŞK SÖZÜ ---
-    st.markdown(
-        """
-    <div class="quote-box">
-        <b>Günün Sözü:</b> "Dünyanın neresinde olursan ol, kalbimin attığı yer hep senin yanın..." ✨
+# Üst Bilgi / Profil Özeti
+st.markdown(
+    """
+    <div class="hero-card">
+        <h1 style='margin:0; color: #f4f4f5; font-size: 28px;'>Hoş geldin, Talha Işıkcı 👑</h1>
+        <p style='margin: 5px 0 0 0; color: #a1a1aa; font-size: 15px;'>Konya | Dijital Komuta Merkezi & Kişisel Ekosistem</p>
     </div>
-    """,
-        unsafe_allow_html=True,
-    )
+""",
+    unsafe_allow_html=True,
+)
 
-    # --- 1. BÖLÜM: BİRLİKTE GEÇEN ZAMAN SAYAÇI ---
-    st.markdown("---")
-    st.header("⏳ 💞 Sonsuzluğa Adım Atalı 💞")
+# Sekmeler (İlgi Alanlarına Göre)
+tab1, tab2, tab3, tab4 = st.tabs(
+    ["🚗 Otomotiv & Garaj", "💻 Yazılım & Donanım", "🖨️ 3D Tasarım", "✨ Tarz & Koleksiyon"]
+)
 
-    baslangic_tarihi = datetime(2026, 9, 19, 15, 11, 0)
-    fark = simdi - baslangic_tarihi
-    toplam_saniye = max(0, int(fark.total_seconds()))
-
-    gun = toplam_saniye // 86400
-    saat = (toplam_saniye % 86400) // 3600
-    dakika = (toplam_saniye % 3600) // 60
-
-    st.markdown(
-        f"""
-    <div class="counter-box">
-        <h3 style="color: #ffb74d; margin: 0; font-size: 20px;">Birlikte Geçen Her Anımız</h3>
-        <p style="font-size: 32px; font-weight: bold; color: #ffffff; margin: 12px 0; text-shadow: 0 0 10px rgba(255,110,64,0.5);">{gun} Gün, {saat} Saat, {dakika} Dakika</p>
-        <p style="color: #ffd54f; font-size: 14px; margin: 0; font-weight: 500;">19 Eylül 2026 Cuma, 15:11'den sonsuza...</p>
-    </div>
-    """,
-        unsafe_allow_html=True,
-    )
-
-    # --- DOĞUM GÜNÜ SAYAÇLARI ---
-    col_b1, col_b2 = st.columns(2)
-    with col_b1:
-        sena_dg = datetime(2027, 5, 19, 0, 0, 0)
-        s_gun = max(0, int((sena_dg - simdi).total_seconds())) // 86400
-        st.markdown(
-            f"""
-        <div class="birthday-box-sena">
-            <h4 style="color: #ff80ab; margin: 0;">🌸 Sena'nın Doğum Günü</h4>
-            <p style="font-size: 22px; font-weight: bold; color: #fff; margin: 8px 0;">{s_gun} Gün Kaldı</p>
-            <p style="color: #ff80ab; font-size: 12px; margin: 0;">19 Mayıs 2027</p>
-        </div>
-        """,
-            unsafe_allow_html=True,
-        )
-    with col_b2:
-        talha_dg = datetime(2027, 2, 20, 0, 0, 0)
-        t_gun = max(0, int((talha_dg - simdi).total_seconds())) // 86400
-        st.markdown(
-            f"""
-        <div class="birthday-box-talha">
-            <h4 style="color: #4fc3f7; margin: 0;">🎉 Talha'nın Doğum Günü</h4>
-            <p style="font-size: 22px; font-weight: bold; color: #fff; margin: 8px 0;">{t_gun} Gün Kaldı</p>
-            <p style="color: #4fc3f7; font-size: 12px; margin: 0;">20 Şubat 2027</p>
-        </div>
-        """,
-            unsafe_allow_html=True,
-        )
-
-    # --- 2. BÖLÜM: MÜZİK ÇALAR ---
-    st.markdown("---")
-    st.header("🎶 Kıraç - Endamın Yeter")
-    st.write("Kulaklığını tak ve müziğin akışına bırak kendini...")
-
-    audio_path = "endaminyeter.mp3"
-    if os.path.exists(audio_path):
-        st.audio(audio_path, format="audio/mp3", autoplay=True)
-    else:
-        st.info(
-            "🎵 Şarkı çaları aktif etmek için 'endaminyeter.mp3' dosyasını proje"
-            " klasörüne ekleyebilirsin."
-        )
-
-    # --- 3. BÖLÜM: SONSUZLUK VE ANA GÖRSEL ---
-    st.markdown("---")
-    st.header("🌌 Sonsuzluğun Ufku")
-
-    img_path = "alanya.jpg"
-    if os.path.exists(img_path):
-        st.image(
-            img_path,
-            caption="Yıldızların altında, el ele...",
-            use_container_width=True,
-        )
-    else:
-        st.warning(
-            "⚠️ Lütfen fotoğrafı proje klasörüne 'alanya.jpg' adıyla kaydet."
-        )
-
-    st.markdown(
-        """
-    <div class="universe-card">
-    Zamanın akıp gittiği bu evrende, yıldızların altında düşündüm de; bu evren ne kadar büyük ve uçsuz bucaksız olursa olsun, benim gözümde senin bakışının derinliğinin yanında sadece sığ bir detay kalır.<br>
-    Bütün ışıklar sönse, gökyüzündeki bütün takımyıldızları kaybolsa bile, senin o gülüşün ömrümün her köşesini aydınlatmaya yeter.<br>
-    Bu site; dünyanın gürültüsünden uzakta, kalplerimizin atışına sakladığımız, sadece ruhunun huzur bulacağı bizim sonsuzluk limanımız...
-    </div>
-    """,
-        unsafe_allow_html=True,
-    )
-
-    # --- İLİŞKİ ZAMAN ÇİZELGESİ (TIMELINE) ---
-    st.markdown("---")
-    st.header("🗺️ Anı Zaman Çizelgemiz")
-    st.markdown(
-        """
-        <div class="timeline-item">
-            <b style="color: #ffb74d;">19 Eylül 2026 — İlk Adım</b>
-            <p style="margin: 5px 0 0 0; color: #cbd5e1; font-size: 14px;">Kalplerimizin aynı ritimde atmaya başladığı o unutulmaz başlangıç.</p>
-        </div>
-        <div class="timeline-item">
-            <b style="color: #ffb74d;">Sonsuz Yolculuk — Gelecek Hatıralarımız</b>
-            <p style="margin: 5px 0 0 0; color: #cbd5e1; font-size: 14px;">Birlikte yazacağımız daha binlerce güzel anı ve kahkaha seni bekliyor.</p>
-        </div>
-    """,
-        unsafe_allow_html=True,
-    )
-
-    # --- 4. BÖLÜM: FOTOĞRAF GALERİSİ ---
-    st.markdown("---")
-    st.header("📸 Anı Albümümüz")
-    st.write("Yanyana durduğumuz, güldüğümüz o özel kareler...")
-
+with tab1:
+    st.markdown("###  Skoda Octavia 1.6 TDI (CAY Engine)")
     col1, col2 = st.columns(2)
     with col1:
-        if os.path.exists("fotograf1.jpg"):
-            st.image("fotograf1.jpg", use_container_width=True)
-        else:
-            st.info("📷 Klasöre 'fotograf1.jpg' ekle")
+        st.info(
+            "**Araç Durumu:** Aktif / Bakımda\n\n"
+            "- Motor: 1.6 TDI CAY\n"
+            "- Modifiye & Stance: Takipte\n"
+            "- Ses Sistemi: Pioneer TS-WX300A & Reiss Midrange planlaması"
+        )
     with col2:
-        if os.path.exists("fotograf2.jpg"):
-            st.image("fotograf2.jpg", use_container_width=True)
-        else:
-            st.info("📷 Klasöre 'fotograf2.jpg' ekle")
-
-    # --- 5. BÖLÜM: ORTAK YAPILACAKLAR LİSTESİ ---
-    st.markdown("---")
-    st.header("🎯 Birlikte Yapacaklarımız")
-    st.write(
-        "Gelecekte hayalini kurduğumuz ve birlikte gerçekleştireceğimiz"
-        " anlar..."
-    )
-
-    bucket_list = [
-        (
-            "Karatay Şehir Parkı'nda gölet kenarındaki kamelyalarda oturup baş"
-            " başa çay içmek 🌳"
-        ),
-        (
-            "Mevlana Meydanı çevresindeki tarihi sokaklarda ve çarşılarda el ele"
-            " yürümek ✨"
-        ),
-        (
-            "Karatay'da yöresel lezzetlerin yapıldığı nezih bir esnaf"
-            " lokantasında veya restoranda baş başa yemek yemek 🍽️"
-        ),
-        (
-            "Yüksek bir tepede gün batımına karşı kahve içip manzarayı"
-            " izlemek 🏰"
-        ),
-        ("Sahilde dalga sesleri eşliğinde akşam yürüyüşü yapmak 🌊"),
-        ("Doğanın kalbinde baş başa huzurlu vakit geçirmek 🌿"),
-    ]
-
-    degisiklik_oldu = False
-    for i, item in enumerate(bucket_list):
-        mevcut_durum = st.session_state.bucket_list_state.get(str(i), False)
-        yeni_durum = st.checkbox(item, value=mevcut_durum, key=f"bucket_{i}")
-        if mevcut_durum != yeni_durum:
-            st.session_state.bucket_list_state[str(i)] = yeni_durum
-            degisiklik_oldu = True
-
-    if degisiklik_oldu:
-        verileri_kaydet()
-
-    # --- MİNİ AŞK TESTİ ---
-    st.markdown("---")
-    st.header("💖 Mini Aşk & Anı Testi")
-    cevap = st.radio(
-        "En huzurlu bulduğumuz an hangisi?",
-        [
-            "Seçiniz...",
-            "Baş başa sessizce oturduğumuz anlar",
-            "Göz göze gelip güldüğümüz anlar",
-            "Hepsi ve her anımız ✨",
-        ],
-    )
-    if cevap == "Hepsi ve her anımız ✨":
-        st.success("Çok haklısın sevgilim, seninle olan her saniye kusursuz! 🥰")
-
-    # --- 6. BÖLÜM: GELECEĞİN ORTAK ŞARKI LİSTESİ ---
-    st.markdown("---")
-    st.header("🎵 Geleceğin Şarkı Listesi & Ortak Nota")
-    st.markdown(
-        """
-    <div class="universe-card">
-    Burası ikimizin müzik arşivimiz. Şarkılara tıklayarak doğrudan Spotify uygulamasını açabilirsin 💖
-    </div>
-    """,
-        unsafe_allow_html=True,
-    )
-
-    for sarki, aciklama, spotify_link in st.session_state.sarki_listesi:
-        st.markdown(
-            f"🎧 <a href='{spotify_link}'"
-            " style='color: #ffb74d; text-decoration: none; font-weight: bold;'>"
-            f"{sarki}</a> — <em>{aciklama}</em>",
-            unsafe_allow_html=True,
+        st.success(
+            "**Garaj Notları:**\n\n"
+            "- W211 Mercedes ve Porsche 911 konsept tasarımları arşivde.\n"
+            "- Araç içi detaylar ve ses sistemi entegrasyonu güncel."
         )
 
-    st.markdown("---")
-    st.subheader("✨ Listeye Yeni Bir Şarkı Ekle")
-
-    yeni_sarki = st.text_input("Şarkı Adı ve Sanatçı", placeholder="", key="y_sarki")
-    yeni_not = st.text_input("Şarkıyla İlgili Küçük Bir Not", placeholder="", key="y_not")
-
-    if st.button("Şarkıyı Listeye Ekle ve Spotify'da Aç 🎶"):
-        if yeni_sarki:
-            s_url = f"spotify:search:{yeni_sarki.replace(' ', '%20')}"
-            st.session_state.sarki_listesi.append(
-                [
-                    yeni_sarki,
-                    yeni_not if yeni_not else "Bizim Şarkımız",
-                    s_url,
-                ]
-            )
-            verileri_kaydet()
-            st.success(
-                f"Harika! '{yeni_sarki}' başarıyla listemize eklendi ve"
-                " Spotify'da açılıyor! 🎉"
-            )
-
-            components.html(
-                f"""
-                <script>
-                    window.location.href = "{s_url}";
-                </script>
+with tab2:
+    st.markdown("### Donanım & Kod Evreni")
+    c1, c2, c3 = st.columns(3)
+    with c1:
+        st.markdown(
+            """
+            <div class="stat-card">
+                <h4>ASUS TUF F15</h4>
+                <p style='font-size: 13px; color: #a1a1aa;'>i7-13620H | RTX 4060<br>1TB Kioxia SSD + SK Hynix DDR5</p>
+            </div>
             """,
-                height=0,
-            )
-
-            st.rerun()
-        else:
-            st.warning("Lütfen eklemek istediğin şarkı adını boş bırakma sevgilim.")
-
-    # --- 7. BÖLÜM: ÖZEL NOT ---
-    st.markdown("---")
-    st.header("✨ Kalbimden Dökülenler")
-    st.markdown(
-        """
-    <div class="universe-card">
-    Hayatta her şeyin bir sıradanlığı varken, seninle her an bambaşka bir hikayeye dönüşüyor. İlk gördüğüm andan beri bende bıraktığın o özel his, zaman geçtikçe çok daha derin ve anlamlı bir yere ulaştı.<br><br>
-    Bazen sokaklarda yürüyken, bazen yan yana oturup sessizce yolu izlerken, bazen de sadece gözlerinin içine bakarken fark ediyorum ki; hayatın koşturmacası içinde en huzur bulduğum yer senin yanın. Dışarıdan bakıldığında belki kendi halinde, sert görünen biriyim ama konu sen olunca içimdeki o yumuşak ve korumacı tarafı sadece sen biliyorsun.<br><br>
-    İyi ki yollarımız kesişti, iyi ki hayatımdasın. Seni çok seviyorum.
-    </div>
-    """,
-        unsafe_allow_html=True,
-    )
-
-    # --- ANLIK NOT BIRAKMA KUTUSU ---
-    st.markdown("---")
-    st.header("💌 Anlık Not Bırakma Kutusu")
-    yeni_not_metin = st.text_area(
-        "Bana buraya küçük bir not bırakmak ister misin sevgilim?",
-        placeholder="Aklından geçenleri yaz...",
-        key="anlik_not_input"
-    )
-    if st.button("Notu Kaydet 📌"):
-        if yeni_not_metin:
-            st.session_state.notlar.append(yeni_not_metin)
-            verileri_kaydet()
-            st.success(
-                "Notun kalbime ve bu siteye kaydedildi sevgilim! İyi ki varsın. ❤️"
-            )
-            st.rerun()
-
-    if st.session_state.notlar:
-        st.markdown(
-            "<h4 style='color: #ffb74d; margin-top: 20px;'>Geçmiş Notlarımız:</h4>",
             unsafe_allow_html=True,
         )
-        for n in st.session_state.notlar:
-            st.markdown(f"- 💬 {n}")
+    with c2:
+        st.markdown(
+            """
+            <div class="stat-card">
+                <h4>Mikrodenetleyiciler</h4>
+                <p style='font-size: 13px; color: #a1a1aa;'>Arduino Uno & ESP32<br>C++, Python, MicroPython</p>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+    with c3:
+        st.markdown(
+            """
+            <div class="stat-card">
+                <h4>Web & Yazılım</h4>
+                <p style='font-size: 13px; color: #a1a1aa;'>HTML, CSS, JavaScript<br>Özel Etkileşimli Projeler</p>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
-    # --- 8. BÖLÜM: ORTAK ROTALARIMIZ ---
-    st.markdown("---")
-    st.header("🗺️ Bizim Rotalarımız")
-
-    rota = st.selectbox(
-        "Birlikte kaybolmak istediğimiz noktayı seç",
-        [
-            "Seçiniz...",
-            "Tarihi Surlar ve Gün Batımı",
-            "Sonsuzluk Sahil Yürüyüşü",
-            "Tarihi Sokaklar ve Liman Gezisi",
-            "Doğanın Kalbinde Huzur",
-        ],
+with tab3:
+    st.markdown("### Anycubic Mega S & 3D Atölyesi")
+    st.write(
+        "SolidWorks ve Tinkercad üzerinden tasarlanan özgün modeller, siyah PETG filament baskıları ve kişisel projeler bu alanda şekilleniyor."
     )
+    st.progress(100, text="Yazıcı Durumu: Hazır & Aktif")
 
-    if rota == "Tarihi Surlar ve Gün Batımı":
-        st.write(
-            "Uçsuz bucaksız manzara karşı saatlerce konuşacağımız o huzur..."
-        )
-    elif rota == "Sonsuzluk Sahil Yürüyüşü":
-        st.write(
-            "Yürürken dalgaların sesine karışan gülüşmelerimiz..."
-        )
-    elif rota == "Tarihi Sokaklar ve Liman Gezisi":
-        st.write(
-            "Işıklar yanarken el ele yapacağımız o nostaljik yürüyüş..."
-        )
-    elif rota == "Doğanın Kalbinde Huzur":
-        st.write(
-            "Suyun sesi ve doğanın kalbinde baş başa geçireceğimiz sakin"
-            " saatler..."
-        )
-
-    # --- 9. SON BÖLÜM ---
-    st.markdown("---")
+with tab4:
+    st.markdown("### Koleksiyon & Tarz")
     st.markdown(
-        """
-    <div style="text-align: center; color: #ffb74d; font-size: 18px; margin-top: 30px; padding: 25px; background: rgba(255,255,255,0.03); border-radius: 16px; border: 1px solid rgba(255,110,64,0.2);">
-    <b>İyi ki varsın sevgilim. Seni çok seviyorum.</b><br>
-    <i>- Sonsuzluğun Başlangıcından...</i>
-    </div>
-    """,
-        unsafe_allow_html=True,
+        "- **Tesbih Koleksiyonu:** Yılan Ağacı (Mustafa Uysal usta işçiliği), Oltu taşı, Kuka ve Kehribar.\n"
+        "- **Kişisel Stil:** Kral zincir aksesuarlar, siyah taş yüzükler ve altın detaylı gözlükler.\n"
+        "- **Hobiler:** DJI Mini 2 SE drone uçuşları ve oyun dünyası (GTA V, ETS 2, Valorant)."
     )
 
-    st.markdown("</div>", unsafe_allow_html=True)
+# Oturumu Kapatma Butonu
+st.markdown("<br><br>", unsafe_allow_html=True)
+if st.button("Güvenli Çıkışı Yap / Kilitle"):
+    st.session_state.giris_yapildi = False
+    st.rerun()
