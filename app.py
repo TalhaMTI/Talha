@@ -21,44 +21,53 @@ if not st.session_state.giris_yapildi:
             background: #09090b;
             color: #ffffff;
         }
+        .block-container {
+            padding-top: 4rem !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         .login-box {
             background: #121216;
-            border: 1px solid rgba(245, 158, 11, 0.3);
+            border: 1px solid rgba(245, 158, 11, 0.4);
             padding: 45px;
             border-radius: 20px;
             text-align: center;
+            width: 100%;
             max-width: 420px;
-            margin: 20px auto;
             box-shadow: 0 25px 50px rgba(0,0,0,0.9);
+            margin: 0 auto;
+        }
+        /* Giriş ekranındaki yazıların netliği */
+        .login-box p {
+            color: #f3f4f6 !important;
+            font-size: 14px !important;
+            font-weight: 500 !important;
         }
         </style>
         """,
         unsafe_allow_html=True,
     )
 
-    col1, col2, col3 = st.columns([1, 2, 1])
-    with col2:
-        st.markdown('<div class="login-box">', unsafe_allow_html=True)
-        st.markdown(
-            "<h2 style='color: #f59e0b; margin-bottom: 5px; font-weight: 700;'>👑 GÜVENLİ ÜS</h2>",
-            unsafe_allow_html=True,
-        )
-        st.markdown(
-            "<p style='color: #d1d5db; font-size: 14px; margin-bottom: 25px;'>Bu dijital alan yalnızca Talha Işıkcı'ya aittir.</p>",
-            unsafe_allow_html=True,
-        )
+    st.markdown('<div class="login-box">', unsafe_allow_html=True)
+    st.markdown(
+        "<h2 style='color: #f59e0b; margin-bottom: 8px; font-weight: 700;'>👑 GÜVENLİ ÜS</h2>",
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        "<p style='margin-bottom: 25px;'>Bu dijital alan yalnızca Talha Işıkcı'ya aittir.</p>",
+        unsafe_allow_html=True,
+    )
 
-        sifre_giris = st.text_input("Güvenlik Anahtarı", type="password")
+    sifre_giris = st.text_input("Güvenlik Anahtarı", type="password")
 
-        if st.button(
-            "Sisteme Bağlan", use_container_width=True, type="primary"
-        ):
-            if sifre_giris == "20.02.2008":
-                st.session_state.giris_yapildi = True
-                st.rerun()
-            else:
-                st.error("⚠️ Erişim Reddedildi: Geçersiz Anahtar!")
-        st.markdown("</div>", unsafe_allow_html=True)
+    if st.button("Sisteme Bağlan", use_container_width=True, type="primary"):
+        if sifre_giris == "20.02.2008":
+            st.session_state.giris_yapildi = True
+            st.rerun()
+        else:
+            st.error("⚠️ Erişim Reddedildi: Geçersiz Anahtar!")
+    st.markdown("</div>", unsafe_allow_html=True)
     st.stop()
 
 
@@ -81,7 +90,7 @@ st.markdown(
     }
     .metric-card {
         background: #121216;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.12);
         padding: 24px;
         border-radius: 16px;
         text-align: center;
@@ -96,9 +105,9 @@ st.markdown(
         color: #f59e0b !important;
         font-weight: 700 !important;
     }
-    /* Streamlit bileşenlerinde solukluk bırakmamak için net metin ayarları */
-    p, span, li, label {
-        color: #e5e7eb !important;
+    /* Tüm genel metinleri solukluktan kurtarıp net beyaz/açık tona sabitledik */
+    p, span, li, label, div {
+        color: #f3f4f6 !important;
     }
     </style>
 """,
@@ -110,7 +119,7 @@ st.markdown(
     """
     <div class="hero-card">
         <h1 style='margin:0; color: #ffffff; font-size: 32px; font-weight: 800;'>Hoş geldin, Komutan Talha Işıkcı 👑</h1>
-        <p style='margin: 8px 0 0 0; color: #f59e0b; font-size: 16px; font-weight: 600;'>Konya | Kişisel Dijital Komuta Merkezi & Arşiv Üssü</p>
+        <p style='margin: 8px 0 0 0; color: #f59e0b !important; font-size: 16px; font-weight: 600;'>Konya | Kişisel Dijital Komuta Merkezi & Arşiv Üssü</p>
     </div>
 """,
     unsafe_allow_html=True,
@@ -153,7 +162,7 @@ with tab2:
             """
             <div class="metric-card">
                 <h4 style='color: #f59e0b; margin-bottom: 10px; font-weight: 700;'>Sistem Donanımı</h4>
-                <p style='font-size: 13px; color: #e5e7eb; line-height: 1.6;'>ASUS TUF Gaming F15<br>Intel Core i7-13620H<br>NVIDIA RTX 4060<br>1TB Kioxia SSD + SK Hynix DDR5</p>
+                <p style='font-size: 13px; color: #f3f4f6; line-height: 1.6;'>ASUS TUF Gaming F15<br>Intel Core i7-13620H<br>NVIDIA RTX 4060<br>1TB Kioxia SSD + SK Hynix DDR5</p>
             </div>
             """,
             unsafe_allow_html=True,
@@ -163,7 +172,7 @@ with tab2:
             """
             <div class="metric-card">
                 <h4 style='color: #f59e0b; margin-bottom: 10px; font-weight: 700;'>Gömülü Sistemler</h4>
-                <p style='font-size: 13px; color: #e5e7eb; line-height: 1.6;'>Arduino Uno & ESP32<br>C++, Python, MicroPython<br>Sensör & Devre Projeleri</p>
+                <p style='font-size: 13px; color: #f3f4f6; line-height: 1.6;'>Arduino Uno & ESP32<br>C++, Python, MicroPython<br>Sensör & Devre Projeleri</p>
             </div>
             """,
             unsafe_allow_html=True,
@@ -173,14 +182,14 @@ with tab2:
             """
             <div class="metric-card">
                 <h4 style='color: #f59e0b; margin-bottom: 10px; font-weight: 700;'>Yazılım Dilleri</h4>
-                <p style='font-size: 13px; color: #e5e7eb; line-height: 1.6;'>HTML, CSS, JavaScript<br>Streamlit Altyapısı<br>Özel Etkileşimli Arayüzler</p>
+                <p style='font-size: 13px; color: #f3f4f6; line-height: 1.6;'>HTML, CSS, JavaScript<br>Streamlit Altyapısı<br>Özel Etkileşimli Arayüzler</p>
             </div>
             """,
             unsafe_allow_html=True,
         )
 
 with tab3:
-    st.markdown("### 🖨️ Anycubic Mega S & Tasarım Atölyesi")
+    st.markdown("### 🖨️️ Anycubic Mega S & Tasarım Atölyesi")
     st.write(
         "SolidWorks ve Tinkercad üzerinde tasarlanan özgün modeller, siyah PETG filament projeleri ve kişisel üretim hattı."
     )
