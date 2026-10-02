@@ -18,19 +18,18 @@ if not st.session_state.giris_yapildi:
         """
         <style>
         .stApp {
-            background: linear-gradient(135deg, #030712 0%, #0f172a 100%);
-            color: #f8fafc;
+            background: #09090b;
+            color: #ffffff;
         }
         .login-box {
-            background: rgba(15, 23, 42, 0.9);
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            padding: 40px;
-            border-radius: 24px;
+            background: #121216;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            padding: 45px;
+            border-radius: 20px;
             text-align: center;
             max-width: 420px;
             margin: 20px auto;
             box-shadow: 0 25px 50px rgba(0,0,0,0.9);
-            backdrop-filter: blur(10px);
         }
         </style>
         """,
@@ -41,11 +40,11 @@ if not st.session_state.giris_yapildi:
     with col2:
         st.markdown('<div class="login-box">', unsafe_allow_html=True)
         st.markdown(
-            "<h2 style='color: #38bdf8; margin-bottom: 5px;'>🛡️ GÜVENLİ ÜS</h2>",
+            "<h2 style='color: #f59e0b; margin-bottom: 5px; font-weight: 700;'>👑 GÜVENLİ ÜS</h2>",
             unsafe_allow_html=True,
         )
         st.markdown(
-            "<p style='color: #94a3b8; font-size: 13px; margin-bottom: 20px;'>Bu dijital alan yalnızca Talha Işıkcı'ya aittir.</p>",
+            "<p style='color: #d1d5db; font-size: 14px; margin-bottom: 25px;'>Bu dijital alan yalnızca Talha Işıkcı'ya aittir.</p>",
             unsafe_allow_html=True,
         )
 
@@ -68,32 +67,38 @@ st.markdown(
     """
     <style>
     .stApp {
-        background: #030712;
-        color: #f8fafc;
+        background: #09090b;
+        color: #ffffff;
         font-family: 'Helvetica Neue', sans-serif;
     }
     .hero-card {
-        background: linear-gradient(135deg, #0f172a 100%, #1e293b 0%);
-        border: 1px solid rgba(56, 189, 248, 0.25);
+        background: linear-gradient(135deg, #121216 0%, #1a1a24 100%);
+        border: 1px solid rgba(245, 158, 11, 0.35);
         padding: 35px;
-        border-radius: 20px;
+        border-radius: 18px;
         margin-bottom: 30px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.7);
     }
     .metric-card {
-        background: #0f172a;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        padding: 22px;
+        background: #121216;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 24px;
         border-radius: 16px;
         text-align: center;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-        transition: transform 0.2s;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+        transition: all 0.3s ease;
     }
     .metric-card:hover {
-        border-color: rgba(56, 189, 248, 0.5);
+        border-color: #f59e0b;
+        transform: translateY(-3px);
     }
     h3 {
-        color: #38bdf8 !important;
+        color: #f59e0b !important;
+        font-weight: 700 !important;
+    }
+    /* Streamlit bileşenlerinde solukluk bırakmamak için net metin ayarları */
+    p, span, li, label {
+        color: #e5e7eb !important;
     }
     </style>
 """,
@@ -104,8 +109,8 @@ st.markdown(
 st.markdown(
     """
     <div class="hero-card">
-        <h1 style='margin:0; color: #f8fafc; font-size: 32px; font-weight: 700;'>Hoş geldin, Komutan Talha Işıkcı 👑</h1>
-        <p style='margin: 8px 0 0 0; color: #38bdf8; font-size: 16px; font-weight: 500;'>Konya | Kişisel Dijital Komuta Merkezi & Arşiv Üssü</p>
+        <h1 style='margin:0; color: #ffffff; font-size: 32px; font-weight: 800;'>Hoş geldin, Komutan Talha Işıkcı 👑</h1>
+        <p style='margin: 8px 0 0 0; color: #f59e0b; font-size: 16px; font-weight: 600;'>Konya | Kişisel Dijital Komuta Merkezi & Arşiv Üssü</p>
     </div>
 """,
     unsafe_allow_html=True,
@@ -147,8 +152,8 @@ with tab2:
         st.markdown(
             """
             <div class="metric-card">
-                <h4 style='color: #38bdf8; margin-bottom: 8px;'>Sistem Donanımı</h4>
-                <p style='font-size: 13px; color: #94a3b8; line-height: 1.5;'>ASUS TUF Gaming F15<br>Intel Core i7-13620H<br>NVIDIA RTX 4060<br>1TB Kioxia SSD + SK Hynix DDR5</p>
+                <h4 style='color: #f59e0b; margin-bottom: 10px; font-weight: 700;'>Sistem Donanımı</h4>
+                <p style='font-size: 13px; color: #e5e7eb; line-height: 1.6;'>ASUS TUF Gaming F15<br>Intel Core i7-13620H<br>NVIDIA RTX 4060<br>1TB Kioxia SSD + SK Hynix DDR5</p>
             </div>
             """,
             unsafe_allow_html=True,
@@ -157,8 +162,8 @@ with tab2:
         st.markdown(
             """
             <div class="metric-card">
-                <h4 style='color: #38bdf8; margin-bottom: 8px;'>Gömülü Sistemler</h4>
-                <p style='font-size: 13px; color: #94a3b8; line-height: 1.5;'>Arduino Uno & ESP32<br>C++, Python, MicroPython<br>Sensör & Devre Projeleri</p>
+                <h4 style='color: #f59e0b; margin-bottom: 10px; font-weight: 700;'>Gömülü Sistemler</h4>
+                <p style='font-size: 13px; color: #e5e7eb; line-height: 1.6;'>Arduino Uno & ESP32<br>C++, Python, MicroPython<br>Sensör & Devre Projeleri</p>
             </div>
             """,
             unsafe_allow_html=True,
@@ -167,8 +172,8 @@ with tab2:
         st.markdown(
             """
             <div class="metric-card">
-                <h4 style='color: #38bdf8; margin-bottom: 8px;'>Yazılım Dilleri</h4>
-                <p style='font-size: 13px; color: #94a3b8; line-height: 1.5;'>HTML, CSS, JavaScript<br>Streamlit Altyapısı<br>Özel Etkileşimli Arayüzler</p>
+                <h4 style='color: #f59e0b; margin-bottom: 10px; font-weight: 700;'>Yazılım Dilleri</h4>
+                <p style='font-size: 13px; color: #e5e7eb; line-height: 1.6;'>HTML, CSS, JavaScript<br>Streamlit Altyapısı<br>Özel Etkileşimli Arayüzler</p>
             </div>
             """,
             unsafe_allow_html=True,
