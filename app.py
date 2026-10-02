@@ -1,5 +1,57 @@
 import streamlit as st
 
+# Sena'nın siteye erişimini tamamen kesen kilit mekanizması
+ERISIM_ACIK_MI = (
+    False  # False yaptığın sürece kimse içeri giremez, site kilitli kalır
+)
+
+if not ERISIM_ACIK_MI:
+    st.set_page_config(
+        page_title="Arşivde...", page_icon="🔒", layout="centered"
+    )
+    st.markdown(
+        """
+        <style>
+        .stApp {
+            background: #000000;
+            color: #94a3b8;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+        .arsiv-container {
+            text-align: center;
+            padding: 100px 20px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #e2e8f0 !important;
+            font-size: 20px !important;
+            letter-spacing: 2px;
+            margin-bottom: 15px !important;
+        }
+        p {
+            font-size: 14px;
+            color: #64748b;
+        }
+        </style>
+        <div class="arsiv-container">
+            <h1>BU SAYFA ARŞİVLENMİŞTİR</h1>
+            <p>Bu dijital alan süresiz olarak askıya alınmıştır ve erişime kapalıdır.</p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    st.stop()
+
+# --- Normal sitenin geri kalan kodları buranın altında kalır, dokunulmaz ---
+
+
+
+
+
+
+import streamlit as st
+
 st.set_page_config(page_title="Sessizlik...", page_icon="💔", layout="centered")
 
 st.markdown(
