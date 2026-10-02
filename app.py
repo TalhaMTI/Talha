@@ -8,110 +8,112 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# --- YÜKSEK KONTRASTLI CSS TASARIMI ---
+# --- MAKSİMUM KONTRAST & CANLI RENK TASARIMI ---
 st.markdown(
     """
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Inter:wght@400;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Inter:wght@400;600;700;800;900&display=swap');
     
-    /* Ana Arka Plan - Derin Mat Siyah */
+    /* Saf Siyah Arka Plan */
     .stApp {
-        background-color: #08080c !important;
+        background-color: #000000 !important;
         color: #ffffff !important;
         font-family: 'Inter', sans-serif;
     }
     
     header {visibility: hidden;}
     
-    /* Login Form Kartı */
+    /* Login Form Kartı - Keskin Antrasit & Parlak Altın Çerçeve */
     [data-testid="stForm"] {
-        background: #11121a !important;
-        border: 2px solid #ffb703 !important;
-        border-radius: 18px !important;
-        padding: 35px 28px !important;
-        box-shadow: 0 0 30px rgba(255, 183, 3, 0.25) !important;
+        background-color: #12131c !important;
+        border: 3px solid #ffcc00 !important;
+        border-radius: 20px !important;
+        padding: 40px 30px !important;
+        box-shadow: 0 0 40px rgba(255, 204, 0, 0.3) !important;
     }
     
-    /* Input (Metin Kutusu) */
+    /* Input (Metin Kutusu) - Saf Siyah İç Kısım & Altın Çerçeve */
     .stTextInput input {
-        background-color: #000000 !important;
-        border: 1.5px solid #ffb703 !important;
+        background-color: #050508 !important;
+        border: 2px solid #ffcc00 !important;
         color: #ffffff !important;
-        border-radius: 10px !important;
-        font-size: 15px !important;
-        font-weight: 700 !important;
-        padding: 12px !important;
+        border-radius: 12px !important;
+        font-size: 16px !important;
+        font-weight: 800 !important;
+        padding: 14px !important;
     }
     .stTextInput input::placeholder {
-        color: #8a8f9e !important;
+        color: #a0a5b8 !important;
     }
     
-    /* Form Gönder / Sistem Butonu (Yüksek Kontrast) */
+    /* Form Gönder / Sistem Butonu - Parlak Altın & Simsiyah Yazı */
     [data-testid="stFormSubmitButton"] button {
-        background: #ffb703 !important;
+        background-color: #ffcc00 !important;
         color: #000000 !important;
         font-family: 'Orbitron', sans-serif !important;
         font-weight: 900 !important;
-        font-size: 16px !important;
-        border-radius: 10px !important;
+        font-size: 17px !important;
+        border-radius: 12px !important;
         border: none !important;
-        padding: 12px 0 !important;
-        box-shadow: 0 4px 15px rgba(255, 183, 3, 0.4) !important;
+        padding: 14px 0 !important;
+        box-shadow: 0 4px 20px rgba(255, 204, 0, 0.5) !important;
         transition: all 0.2s ease-in-out !important;
     }
     [data-testid="stFormSubmitButton"] button:hover {
-        background: #ffa200 !important;
+        background-color: #ffdb33 !important;
         color: #000000 !important;
-        box-shadow: 0 6px 22px rgba(255, 183, 3, 0.7) !important;
-        transform: translateY(-2px);
+        box-shadow: 0 6px 25px rgba(255, 204, 0, 0.8) !important;
+        transform: scale(1.02);
     }
 
-    /* Streamlit Standart Butonlar */
+    /* Standart Butonlar */
     .stButton button {
-        background: #ffb703 !important;
+        background-color: #ffcc00 !important;
         color: #000000 !important;
         font-family: 'Orbitron', sans-serif !important;
         font-weight: 900 !important;
-        border-radius: 10px !important;
+        border-radius: 12px !important;
         border: none !important;
     }
     
-    /* Sekmeler (Tabs) Kontrastı */
+    /* Sekmeler (Tabs) Keskin Kontrast */
     .stTabs [data-baseweb="tab-list"] {
-        gap: 8px;
+        gap: 10px;
     }
     .stTabs [data-baseweb="tab"] {
-        background-color: #11121a !important;
-        border: 1px solid #2a2d3d !important;
-        border-radius: 8px !important;
-        color: #cbd5e1 !important;
-        font-weight: 700 !important;
-        padding: 10px 16px !important;
+        background-color: #12131c !important;
+        border: 2px solid #33384f !important;
+        border-radius: 10px !important;
+        color: #e2e8f0 !important;
+        font-weight: 800 !important;
+        padding: 12px 20px !important;
     }
     .stTabs [aria-selected="true"] {
-        background-color: #ffb703 !important;
+        background-color: #ffcc00 !important;
         color: #000000 !important;
-        border-color: #ffb703 !important;
+        border-color: #ffcc00 !important;
     }
 
-    /* Genel Kart Stilleri */
+    /* Ana Panel Kart Stilleri */
     .metric-card {
-        background: #11121a;
-        border: 1px solid #ffb703;
-        padding: 24px;
+        background-color: #12131c;
+        border: 2px solid #ffcc00;
+        padding: 26px;
         border-radius: 16px;
         text-align: center;
         margin-bottom: 15px;
     }
     .metric-card h4 {
-        color: #ffb703 !important;
+        color: #ffcc00 !important;
         font-family: 'Orbitron', sans-serif;
-        font-size: 18px !important;
-        margin-bottom: 10px !important;
+        font-size: 19px !important;
+        font-weight: 900 !important;
+        margin-bottom: 12px !important;
     }
     .metric-card p {
-        color: #f1f5f9 !important;
-        font-weight: 600;
+        color: #ffffff !important;
+        font-weight: 700;
+        font-size: 14px;
     }
     </style>
     """,
@@ -133,10 +135,10 @@ if not st.session_state.giris_yapildi:
             # Büyük Üst Kutu (MTI WEB TASARIM)
             st.markdown(
                 """
-                <div style="background: #1a1c29; border: 2px solid #ffb703; 
-                            border-radius: 12px; padding: 16px; text-align: center; margin-bottom: 22px;">
-                    <span style="font-family: 'Orbitron', sans-serif; color: #ffb703; font-weight: 900; 
-                                 font-size: 18px; letter-spacing: 3px;">
+                <div style="background-color: #050508; border: 2px solid #ffcc00; 
+                            border-radius: 14px; padding: 18px; text-align: center; margin-bottom: 24px;">
+                    <span style="font-family: 'Orbitron', sans-serif; color: #ffcc00; font-weight: 900; 
+                                 font-size: 19px; letter-spacing: 3px;">
                         ⚡ MTI WEB TASARIM ⚡
                     </span>
                 </div>
@@ -147,12 +149,12 @@ if not st.session_state.giris_yapildi:
             # Başlık ve Açıklama Metni
             st.markdown(
                 """
-                <div style="text-align: center; margin-bottom: 22px;">
+                <div style="text-align: center; margin-bottom: 24px;">
                     <h2 style="font-family: 'Orbitron', sans-serif; color: #ffffff; font-weight: 900; 
-                               font-size: 24px; letter-spacing: 1.5px; margin-bottom: 8px;">
+                               font-size: 26px; letter-spacing: 1.5px; margin-bottom: 10px;">
                         👑 ELITE COMMAND
                     </h2>
-                    <p style="color: #cbd5e1; font-size: 13.5px; font-weight: 600; margin: 0;">
+                    <p style="color: #f1f5f9; font-size: 14px; font-weight: 700; margin: 0; line-height: 1.5;">
                         Bu sistem yalnızca Komutan Talha Işıkcı'ya aittir.<br>Yetkisiz erişim yasaktır.
                     </p>
                 </div>
@@ -179,7 +181,7 @@ if not st.session_state.giris_yapildi:
                     st.session_state.giris_yapildi = True
                     st.rerun()
                 else:
-                    st.error("⚠️️ KRİTİK HATA: Geçersiz Güvenlik Anahtarı!")
+                    st.error("⚠️ KRİTİK HATA: Geçersiz Güvenlik Anahtarı!")
 
     st.stop()
 
@@ -187,11 +189,11 @@ if not st.session_state.giris_yapildi:
 # --- ANA PANEL (GİRİŞ BAŞARILI) ---
 st.markdown(
     """
-    <div style="background: #11121a; border: 2px solid #ffb703; padding: 30px; border-radius: 18px; margin-bottom: 25px;">
-        <h1 style="font-family: 'Orbitron', sans-serif; font-size: 28px; color: #ffffff; margin: 0; font-weight: 900;">
+    <div style="background-color: #12131c; border: 2px solid #ffcc00; padding: 32px; border-radius: 18px; margin-bottom: 25px;">
+        <h1 style="font-family: 'Orbitron', sans-serif; font-size: 30px; color: #ffffff; margin: 0; font-weight: 900;">
             Hoş geldin, Komutan Talha Işıkcı 👑
         </h1>
-        <p style="font-family: 'Orbitron', sans-serif; font-size: 14px; color: #ffb703; margin-top: 8px; font-weight: 800; letter-spacing: 2px;">
+        <p style="font-family: 'Orbitron', sans-serif; font-size: 15px; color: #ffcc00; margin-top: 10px; font-weight: 900; letter-spacing: 2px;">
             KONYA | ELİT DİJİTAL KOMUTA MERKEZİ & ARŞİV ÜSSÜ
         </p>
     </div>
@@ -212,7 +214,7 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs(
 
 with tab1:
     st.markdown(
-        "<h3 style='color:#ffb703; font-family:Orbitron;'>🚙 Skoda Octavia 1.6 TDI (CAY Engine)</h3>",
+        "<h3 style='color:#ffcc00; font-family:Orbitron; font-weight:900;'>🚙 Skoda Octavia 1.6 TDI (CAY Engine)</h3>",
         unsafe_allow_html=True,
     )
     col1, col2 = st.columns(2)
@@ -233,7 +235,7 @@ with tab1:
 
 with tab2:
     st.markdown(
-        "<h3 style='color:#ffb703; font-family:Orbitron;'>⚡ ASUS TUF F15 & Kod Evreni</h3>",
+        "<h3 style='color:#ffcc00; font-family:Orbitron; font-weight:900;'>⚡ ASUS TUF F15 & Kod Evreni</h3>",
         unsafe_allow_html=True,
     )
     c1, c2, c3 = st.columns(3)
@@ -270,7 +272,7 @@ with tab2:
 
 with tab3:
     st.markdown(
-        "<h3 style='color:#ffb703; font-family:Orbitron;'>🖨️ Anycubic Mega S Atölyesi</h3>",
+        "<h3 style='color:#ffcc00; font-family:Orbitron; font-weight:900;'>🖨️ Anycubic Mega S Atölyesi</h3>",
         unsafe_allow_html=True,
     )
     col_a, col_b = st.columns(2)
@@ -285,7 +287,7 @@ with tab3:
 
 with tab4:
     st.markdown(
-        "<h3 style='color:#ffb703; font-family:Orbitron;'>💎 Koleksiyon & Tarz</h3>",
+        "<h3 style='color:#ffcc00; font-family:Orbitron; font-weight:900;'>💎 Koleksiyon & Tarz</h3>",
         unsafe_allow_html=True,
     )
     st.markdown(
@@ -296,7 +298,7 @@ with tab4:
 
 with tab5:
     st.markdown(
-        "<h3 style='color:#ffb703; font-family:Orbitron;'>🌌 Özel Bağlantılar</h3>",
+        "<h3 style='color:#ffcc00; font-family:Orbitron; font-weight:900;'>🌌 Özel Bağlantılar</h3>",
         unsafe_allow_html=True,
     )
     st.success(
