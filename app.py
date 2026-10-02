@@ -30,7 +30,6 @@ if not st.session_state.giris_yapildi:
         
         header {visibility: hidden;}
         
-        /* Sayfayı tam ortalamak için esnek yapı */
         .main .block-container {
             display: flex;
             align-items: center;
@@ -43,7 +42,7 @@ if not st.session_state.giris_yapildi:
             background: rgba(18, 18, 24, 0.9);
             backdrop-filter: blur(20px);
             border: 2px solid rgba(245, 158, 11, 0.5);
-            padding: 45px 40px;
+            padding: 40px 35px;
             border-radius: 24px;
             text-align: center;
             width: 100%;
@@ -57,26 +56,27 @@ if not st.session_state.giris_yapildi:
             100% { border-color: rgba(245, 158, 11, 0.8); box-shadow: 0 0 60px rgba(245, 158, 11, 0.4); }
         }
         
-        .login-mti-badge {
-            background: rgba(245, 158, 11, 0.12);
-            border: 1px solid rgba(245, 158, 11, 0.5);
-            padding: 8px 16px;
-            border-radius: 12px;
+        /* Büyük Üst Kutu (Artık MTI WEB TASARIM yazıyor) */
+        .login-top-banner {
+            background: rgba(245, 158, 11, 0.1);
+            border: 2px solid rgba(245, 158, 11, 0.6);
+            padding: 18px;
+            border-radius: 16px;
             font-family: 'Orbitron', sans-serif;
             color: #f59e0b;
             font-weight: 900;
-            font-size: 13px;
-            letter-spacing: 3px;
-            margin-bottom: 20px;
-            display: inline-block;
-            box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
-            text-shadow: 0 0 8px rgba(245, 158, 11, 0.6);
+            font-size: 16px;
+            letter-spacing: 4px;
+            margin-bottom: 25px;
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.3);
+            text-shadow: 0 0 10px rgba(245, 158, 11, 0.7);
         }
+        
         .login-title {
             font-family: 'Orbitron', sans-serif;
             color: #ffffff;
             font-weight: 900;
-            font-size: 24px;
+            font-size: 22px;
             letter-spacing: 2px;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
             margin-bottom: 10px;
@@ -114,7 +114,7 @@ if not st.session_state.giris_yapildi:
 
     st.markdown('<div class="login-box">', unsafe_allow_html=True)
     st.markdown(
-        '<div class="login-mti-badge">⚡ MTI WEB TASARIM ⚡</div>',
+        '<div class="login-top-banner">⚡ MTI WEB TASARIM ⚡</div>',
         unsafe_allow_html=True,
     )
     st.markdown(
