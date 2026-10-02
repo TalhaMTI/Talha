@@ -64,7 +64,6 @@ if not st.session_state.giris_yapildi:
             font-size: 14px !important;
             font-weight: 600 !important;
         }
-        /* Input ve butonları cyberpunk tarzı yapma */
         .stTextInput input {
             background: #09090b !important;
             border: 1px solid rgba(245, 158, 11, 0.4) !important;
@@ -172,6 +171,23 @@ st.markdown(
         text-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
     }
 
+    /* MTI Web Tasarım Özel İmza Banner'ı */
+    .mti-badge {
+        background: rgba(245, 158, 11, 0.08);
+        border: 1px solid rgba(245, 158, 11, 0.4);
+        padding: 10px 20px;
+        border-radius: 12px;
+        text-align: center;
+        font-family: 'Orbitron', sans-serif;
+        color: #f59e0b;
+        font-weight: 900;
+        font-size: 14px;
+        letter-spacing: 3px;
+        margin-bottom: 25px;
+        box-shadow: 0 0 20px rgba(245, 158, 11, 0.15);
+        text-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
+    }
+
     /* Holografik Kartlar */
     .metric-card {
         background: rgba(18, 18, 24, 0.8);
@@ -234,8 +250,9 @@ st.markdown(
 st.markdown(
     """
     <div class="hero-card">
+        <div class="mti-badge">⚡ MTI WEB TASARIM ⚡</div>
         <h1 class="hero-title">Hoş geldin, Komutan Talha Işıkcı 👑</h1>
-        <div class="hero-subtitle">⚡ KONYA | ELİT DİJİTAL KOMUTA MERKEZİ & ARŞİV ÜSSÜ ⚡</div>
+        <div class="hero-subtitle">KONYA | ELİT DİJİTAL KOMUTA MERKEZİ & ARŞİV ÜSSÜ</div>
     </div>
 """,
     unsafe_allow_html=True,
