@@ -5,7 +5,7 @@ import streamlit.components.v1 as components
 
 # Sayfa Ayarları
 st.set_page_config(
-    page_title="Bir Aranın Hikayesi...", page_icon="💔", layout="centered"
+    page_title="Bir Aranın Hikayesi...", page_icon="🥀", layout="centered"
 )
 
 # Tema ve Stil Ayarları
@@ -89,7 +89,7 @@ if not st.session_state.erisim_onay:
             <h2 style="margin-bottom: 5px;">Sistem Bakımda... ya da Askıda</h2>
             <p style="color: #94a3b8; font-size: 14px; margin-bottom: 10px;">Her hikaye bazen sessiz bir molaya ihtiyaç duyar.</p>
             <div class="break-note">
-                Bu dijital komuta merkezi şu an karşılıklı alınan bir karar / yaşanan bir ayrılık nedeniyle askıya alınmıştır. 
+                Bu dijital alan şu an aradaki duruma ve yaşanan ayrılığa bağlı olarak askıya alınmıştır. 
                 Hatıralar silinmedi, sadece üzerlerine biraz toz konmasına izin verildi.<br><br>
                 <i>Belki bir gün yollar yeniden kesiştiğinde, bu sistem tekrar aktif olur...</i>
             </div>
@@ -103,7 +103,7 @@ if not st.session_state.erisim_onay:
 
     st.markdown("</div>", unsafe_allow_html=True)
 
-# İçerik Ekranı (Eğer kullanıcı ısrarla görmek isterse açılan arşiv/eski anılar kısmı)
+# İçerik Ekranı (Arşiv Modu)
 if st.session_state.erisim_onay:
     st.markdown(
         '<div style="text-align: center; color: #94a3b8; padding: 10px;"><i>[ Arşiv Modu Görüntüleniyor ]</i></div>',
